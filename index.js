@@ -1,3 +1,4 @@
+/*jshint node: true */
 'use strict';
 
 var nock = require('nock');
@@ -116,4 +117,4 @@ module.exports = {
   nock: nockGithubOAuth,
   token: tokenResponse,
   host: host
-}
+};

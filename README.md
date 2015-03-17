@@ -55,8 +55,11 @@ unit testing, here's how to run tests:
 npm run test
 ```
 
-**Important:** In order for pull requests to be merged the author must 1) provide proper testing,
-and 2) ensure that all tests pass.
+Additionally you'll want to ensure the files lint appropriately:
+
+```
+npm run lint
+```
 
 ## License
 (https://github.com/rsandor/nock-github-oauth/blob/master/LICENSE)[MIT]
