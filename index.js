@@ -4,7 +4,14 @@ var nock = require('nock');
 var multiline = require('multiline');
 
 /**
+ * GitHub OAuth host and port.
+ * @type {String}
+ */
+var host = 'https://github.com:443';
+
+/**
  * Mock access token response. Note: do not indent.
+ * @type {String}
  */
 var tokenResponse = multiline(function () {/*
 access_token=9999999999999999999999999999999999999999&scope=read%3Arepo_hook%2Crepo%2Cuser%3Aemail&token_type=bearer
@@ -12,23 +19,32 @@ access_token=9999999999999999999999999999999999999999&scope=read%3Arepo_hook%2Cr
 });
 
 /**
- * Setup nock intercepts for github OAuth.
- * @param  {Function} [cb] Optional callback to execute after intercepts have been created.
+ * Intercept `/login`.
  */
-function nockGithubOAuth(cb) {
-  nock('https://github.com:443')
+function nockLogin() {
+  nock(host)
     .filteringPath(/\/login\?.+/, '/login')
     .get('/login')
     .reply(200, '<html>login form...</html>', {
       'set-cookie': true
     });
+}
 
-  nock('https://github.com:443')
+/**
+ * Intercept `/login/oauth/authorize`.
+ */
+function nockAuthorize() {
+  nock(host)
     .filteringPath(/\/login\/oauth\/authorize\?.+/, '/login/oauth/authorize')
     .get('/login/oauth/authorize')
     .reply(200, '<html>login form...</html>');
+}
 
-  nock('https://github.com:443')
+/**
+ * Intercept `/login/oauth/access_token`.
+ */
+function nockAccessToken() {
+  nock(host)
     .filteringRequestBody(function () {
       return '*';
     })
@@ -83,8 +99,21 @@ function nockGithubOAuth(cb) {
       'x-content-type-options': 'nosniff',
       'x-served-by': '9835a984a05caa405eb61faaa1546741'
     });
+}
 
+/**
+ * Setup nock intercepts for github OAuth.
+ * @param  {Function} [cb] Optional callback to execute after intercepts have been created.
+ */
+function nockGithubOAuth(cb) {
+  nockLogin();
+  nockAuthorize();
+  nockAccessToken();
   if (cb) { cb(); }
 }
 
-module.exports = nockGithubOAuth;
+module.exports = {
+  nock: nockGithubOAuth,
+  token: tokenResponse,
+  host: host
+}
