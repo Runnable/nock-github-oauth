@@ -1,0 +1,22 @@
+{
+  "name": "nock-github-oauth",
+  "version": "0.1.0",
+  "description": "GitHub OAuth HTTP intercepts via nock.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "keywords": [
+    "test",
+    "mock",
+    "nock",
+    "github",
+    "oauth"
+  ],
+  "author": "Ryan Sandor Richards (https://github.com/rsandor)",
+  "license": "MIT",
+  "dependencies": {
+    "multiline": "^1.0.2",
+    "nock": "^1.2.0"
+  }
+}
