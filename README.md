@@ -26,4 +26,4 @@ describe('a module dependant on github authorization', function() {
 ```
 
 ## License
-(https://github.com/rsandor/nock-github-oauth/blob/master/LICENSE)[MIT]
+[MIT](https://github.com/rsandor/nock-github-oauth/blob/master/LICENSE)
