@@ -14,6 +14,12 @@
     "oauth"
   ],
   "author": "Ryan Sandor Richards (https://github.com/rsandor)",
+  "contributors": [
+    {
+      "name": "Tejesh Mehta",
+      "url": "https://github.com/tjmehta"
+    }
+  ],
   "license": "MIT",
   "dependencies": {
     "multiline": "^1.0.2",
