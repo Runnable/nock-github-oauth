@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/Runnable/nock-github-oauth.svg?branch=master)](https://travis-ci.org/Runnable/nock-github-oauth) 
 [![Dependency Status](https://david-dm.org/Runnable/nock-github-oauth.svg)](https://david-dm.org/Runnable/nock-github-oauth) 
 [![devDependency Status](https://david-dm.org/Runnable/nock-github-oauth/dev-status.svg)](https://david-dm.org/Runnable/nock-github-oauth#info=devDependencies)
-[![Code Climate](https://codeclimate.com/github/Runnable/nock-github-oauth/badges/gpa.svg)](https://codeclimate.com/github/Runnable/nock-github-oauth/badges/gpa.svg)
+[![Code Climate](https://codeclimate.com/github/Runnable/nock-github-oauth/badges/gpa.svg)](https://codeclimate.com/github/Runnable/nock-github-oauth)
 
 [![NPM](https://nodei.co/npm/nock-github-oauth.png?compact=true)](https://nodei.co/npm/nock-github-oauth/)
 
