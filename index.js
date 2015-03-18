@@ -8,7 +8,7 @@ var multiline = require('multiline');
  * GitHub OAuth host and port.
  * @type {String}
  */
-var host = 'https://github.com:443';
+var defaultHost = 'https://github.com:443';
 
 /**
  * Mock access token response. Note: do not indent.
@@ -22,7 +22,7 @@ access_token=9999999999999999999999999999999999999999&scope=read%3Arepo_hook%2Cr
 /**
  * Intercept `/login`.
  */
-function nockLogin() {
+function nockLogin(host) {
   nock(host)
     .filteringPath(/\/login\?.+/, '/login')
     .get('/login')
@@ -34,7 +34,7 @@ function nockLogin() {
 /**
  * Intercept `/login/oauth/authorize`.
  */
-function nockAuthorize() {
+function nockAuthorize(host) {
   nock(host)
     .filteringPath(/\/login\/oauth\/authorize\?.+/, '/login/oauth/authorize')
     .get('/login/oauth/authorize')
@@ -44,7 +44,7 @@ function nockAuthorize() {
 /**
  * Intercept `/login/oauth/access_token`.
  */
-function nockAccessToken() {
+function nockAccessToken(host) {
   nock(host)
     .filteringRequestBody(function () {
       return '*';
@@ -104,17 +104,32 @@ function nockAccessToken() {
 
 /**
  * Setup nock intercepts for github OAuth.
+ * @param {Object} [options] Optional options for the nock setup.
  * @param  {Function} [cb] Optional callback to execute after intercepts have been created.
  */
-function nockGithubOAuth(cb) {
-  nockLogin();
-  nockAuthorize();
-  nockAccessToken();
+function nockGithubOAuth(options, cb) {
+  if (typeof options == 'function') {
+    cb = options;
+    options = { host: defaultHost };
+  }
+  else if (typeof options == 'object') {
+    if (!options.host) {
+      options.host = defaultHost;
+    }
+  }
+  else {
+    options = { host: defaultHost };
+  }
+
+  nockLogin(options.host);
+  nockAuthorize(options.host);
+  nockAccessToken(options.host);
+
   if (cb) { cb(); }
 }
 
 module.exports = {
   nock: nockGithubOAuth,
   token: tokenResponse,
-  host: host
+  host: defaultHost
 };
