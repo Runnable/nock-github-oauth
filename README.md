@@ -24,9 +24,10 @@ The package exposes a method (`exports.nock`) that establishes the intercepts fo
 aforementioned Github OAuth routes. Here is an example of how to use it in a
 (https://github.com/hapijs/lab)[lab] test:
 
-```
+```js
 var Lab = require('lab');
 var lab = exports.lab = Lab.script();
+var nock = require('nock');
 var github = require('nock-github-oauth');
 
 lab.experiment('module that depends on GitHub OAuth', function() {
@@ -47,7 +48,7 @@ Finally, for convience, the package also exposes the https host for GitHub OAuth
 intercepted `POST /login/oauth/access_token` via `exports.token`. You can access these
 like so:
 
-```
+```js
 var github = require('nock-github-oauth');
 var mockToken = github.token;
 var githubHost = github.host;
@@ -63,7 +64,7 @@ unit testing, here's how to run tests:
 npm run test
 ```
 
-Additionally you'll want to ensure the files lint appropriately:
+Additionally you'll want to ensure the files lint:
 
 ```
 npm run lint
