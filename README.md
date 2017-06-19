@@ -22,7 +22,7 @@ following routes for `https://github.com:443`:
 
 The package exposes a method (`exports.nock`) that establishes the intercepts for each of the
 aforementioned Github OAuth routes. Here is an example of how to use it in a
-(https://github.com/hapijs/lab)[lab] test:
+[lab](https://github.com/hapijs/lab) test:
 
 ```js
 var Lab = require('lab');
