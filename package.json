@@ -7,6 +7,10 @@
     "test": "./node_modules/.bin/lab --verbose --coverage ./test/* ",
     "lint": "./node_modules/.bin/jshint index.js"
   },
+    "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Runnable/nock-github-oauth.git"
+  },
   "keywords": [
     "test",
     "mock",
